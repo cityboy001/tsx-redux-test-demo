@@ -1,0 +1,12 @@
+.list-container {
+    overflow-y: scroll;
+}
+
+.product-image {
+    width: 80px;
+    height: 80px;
+}
+
+.number {
+    width: 180px;
+}
