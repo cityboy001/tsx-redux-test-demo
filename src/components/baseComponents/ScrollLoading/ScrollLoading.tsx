@@ -1,22 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { RefObject, useEffect, useLayoutEffect, useRef } from "react";
 
-export function getElementScrollPosition(element: HTMLElement) {
-  return Math.max(
-    document.documentElement && document.documentElement.scrollTop,
-    document.body && document.body.scrollTop,
-    Number(document.scrollingElement && document.scrollingElement.scrollTop)
-  );
-}
-
-export function getElementScrollHeight() {
-  return Math.max(
-    document.documentElement && document.documentElement.scrollHeight,
-    document.body && document.body.scrollHeight,
-    Number(document.scrollingElement && document.scrollingElement.scrollHeight)
-  );
-}
-
 export type InfiniteScrollProps = {
   loadMore: () => any;
   onScroll?: (top: number) => any;
