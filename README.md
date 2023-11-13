@@ -1,8 +1,6 @@
 # Getting Started with Create React App
 
-<video id="video" controls="" preload="none" poster="">
-      <source id="mp4" src="./demo-video.mp4" type="video/mp4">
-</videos>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
