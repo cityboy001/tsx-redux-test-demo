@@ -1,5 +1,5 @@
 # Getting Started with Create React App
-video[video](./demo-video.mp4) 
+@video[](./demo-video.mp4) 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
