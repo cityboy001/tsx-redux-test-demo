@@ -1,17 +1,8 @@
 # Getting Started with Create React App
 
-
+[video](https://github.com/cityboy001/tsx-redux-test-demo/assets/31151886/5a3a4082-997f-4cdf-9fd5-ac56293660be)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-<iframe 
-src="./demo-video.mp4" 
-scrolling="no" 
-border="0" 
-frameborder="no" 
-framespacing="0" 
-allowfullscreen="true" 
-height=600 
-width=800> 
-</iframe>
+
 ## Available Scripts
 
 In the project directory, you can run:
