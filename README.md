@@ -1,6 +1,6 @@
 # Getting Started with Create React App
-@video[](./demo-video.mp4) 
 
+<video src="./demo-video.mp4" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
