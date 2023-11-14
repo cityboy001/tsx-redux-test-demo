@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+[video](https://github.com/cityboy001/tsx-redux-test-demo/assets/31151886/5a3a4082-997f-4cdf-9fd5-ac56293660be)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
