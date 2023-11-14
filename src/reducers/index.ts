@@ -1,7 +1,5 @@
 import {
-  Action,
   PreloadedState,
-  StoreCreator,
   combineReducers,
   configureStore,
 } from "@reduxjs/toolkit";
@@ -16,9 +14,8 @@ export const rootReducer = combineReducers({
 });
 
 export function setupStore(
-  preloadedState?: PreloadedState<ReturnType<typeof rootReducer>>,
+  preloadedState?: PreloadedState<ReturnType<typeof rootReducer>>
 ) {
-  
   return configureStore({
     reducer: rootReducer,
     preloadedState,
