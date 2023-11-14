@@ -111,4 +111,145 @@ describe("test <ProductDetail />", () => {
       });
     });
   });
+
+  describe("when changing the input with value that is not a integer", () => {
+    test("should show the input with error style", () => {
+      const mockState = getDefaultMockState();
+      const product1 = getProductItem();
+      const product2 = getProductItem();
+      mockState.list.productList = [product1, product2];
+
+      renderWith(
+        <Routes>
+          <Route
+            path={productDetailPathFullPath}
+            element={<ProductDetail />}
+          ></Route>
+        </Routes>,
+        {
+          preloadedState: mockState,
+          routePath: productDetailPathFullPath,
+          initialPath: productDetailPath + "/" + product1.id,
+        }
+      );
+
+      const input = screen.getByRole("textbox");
+      const valueIsNotAInteger = "N";
+
+      fireEvent.change(input, {
+        target: {
+          value: valueIsNotAInteger,
+        },
+      });
+
+      expect(input).toHaveValue(valueIsNotAInteger);
+      expect(input).toHaveClass("is-invalid");
+    });
+
+    test("should do nothing when click the add or minus button", () => {
+      const mockState = getDefaultMockState();
+      const product1 = getProductItem();
+      const product2 = getProductItem();
+      mockState.list.productList = [product1, product2];
+
+      renderWith(
+        <Routes>
+          <Route
+            path={productDetailPathFullPath}
+            element={<ProductDetail />}
+          ></Route>
+        </Routes>,
+        {
+          preloadedState: mockState,
+          routePath: productDetailPathFullPath,
+          initialPath: productDetailPath + "/" + product1.id,
+        }
+      );
+      const buttons = screen.getAllByRole("button");
+      const input = screen.getByRole("textbox");
+      const valueIsNotAInteger = "N";
+      fireEvent.change(input, {
+        target: {
+          value: valueIsNotAInteger,
+        },
+      });
+
+      fireEvent.click(buttons[0]);
+      fireEvent.click(buttons[1]);
+
+      expect(input).toHaveValue(valueIsNotAInteger);
+    });
+
+    describe("when there is a error in the input", () => {
+      test("should not call dispath addToCartProductList action", () => {
+        const mockState = getDefaultMockState();
+        const product1 = getProductItem();
+        const product2 = getProductItem();
+        mockState.list.productList = [product1, product2];
+        const mockDispatch = jest.fn() 
+
+        renderWith(
+          <Routes>
+            <Route
+              path={productDetailPathFullPath}
+              element={<ProductDetail />}
+            ></Route>
+          </Routes>,
+          {
+            preloadedState: mockState,
+            routePath: productDetailPathFullPath,
+            initialPath: productDetailPath + "/" + product1.id,
+            dispatch: mockDispatch
+          }
+        );
+        const buttons = screen.getAllByRole("button");
+        const input = screen.getByRole("textbox");
+        const valueIsNotAInteger = "N";
+        fireEvent.change(input, {
+          target: {
+            value: valueIsNotAInteger,
+          },
+        });
+
+        fireEvent.click(buttons[2]);
+
+        expect(mockDispatch).not.toHaveBeenCalled();
+      });
+    });
+
+    test("should show the error style", () => {
+      const mockState = getDefaultMockState();
+      const product1 = getProductItem();
+      const product2 = getProductItem();
+      mockState.list.productList = [product1, product2];
+
+      const { store } = renderWith(
+        <Routes>
+          <Route
+            path={productDetailPathFullPath}
+            element={<ProductDetail />}
+          ></Route>
+        </Routes>,
+        {
+          preloadedState: mockState,
+          routePath: productDetailPathFullPath,
+          initialPath: productDetailPath + "/" + product1.id,
+        }
+      );
+
+      const buttons = screen.getAllByRole("button");
+      const input = screen.getByRole("textbox");
+
+      fireEvent.click(buttons[1]);
+      expect(input).toHaveValue("2");
+
+      fireEvent.click(buttons[2]);
+      expect(store.getState().cart.productList).toEqual({
+        [product1.id]: {
+          count: 2,
+          product: product1,
+        },
+      });
+    });
+  });
 });

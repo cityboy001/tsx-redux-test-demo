@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
 import { AppStore, ReducerDataStructrue, setupStore } from "../reducers";
 import { MemoryRouter } from "react-router-dom";
+import { Dispatch } from "@reduxjs/toolkit";
 
 export const getDefaultMockState = (): ReducerDataStructrue => {
   return {
@@ -29,6 +30,7 @@ export function renderWith(
         initialPath?: string;
         preloadedState?: any;
         store?: AppStore;
+        dispatch?: Dispatch;
         [key: string]: any;
       }
     | undefined
@@ -37,9 +39,13 @@ export function renderWith(
     initialPath = "/",
     preloadedState = {},
     store = setupStore(preloadedState),
+    dispatch,
     ...renderOptions
   } = options || {};
   function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
+    if (dispatch) {
+      store.dispatch = dispatch;
+    }
     return (
       <Provider store={store}>
         <MemoryRouter initialEntries={[initialPath]}>{children}</MemoryRouter>
